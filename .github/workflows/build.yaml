@@ -19,7 +19,7 @@ jobs:
         id: read_env
         uses: cardinalby/export-env-action@v2
         with:
-          envFile: '.env'
+          envFile: ".env"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -38,8 +38,8 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ inputs.release-version }}
             type=semver,pattern={{major}}.{{minor}},value=${{ inputs.release-version }}
             type=semver,pattern={{major}},value=${{ inputs.release-version }}
-          labels:
-            kea.version=${{ env.KEA_VERSION }}
+          labels: |
+            emacs.version=${{ env.EMACS_VERSION }}
             alpine.version=${{ env.ALPINE_VERSION }}
           flavor: |
             latest=true
@@ -60,5 +60,5 @@ jobs:
           platforms: linux/arm64,linux/amd64
           file: "Dockerfile"
           build-args: |
-            KEA_VERSION=${{ env.KEA_VERSION }}
+            EMACS_VERSION=${{ env.EMACS_VERSION }}
             ALPINE_VERSION=${{ env.ALPINE_VERSION }}
